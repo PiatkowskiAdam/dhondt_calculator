@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/main.css">
+    <title>D'Hondt Calculator - Seats in Parliament</title>
+  </head>
+  <body>
+    <header>
+      <h1>D'Hondt Calculator</h1>
+      <h2>Seats in Parliament</h2>
+      <h3>Calculate the amount of seats allocated to each party.</h3>
+      <div class="">
+        <label for="numberOfSeats">Number of Seats available: </label>
+        <input type="number" name="numberOfSeats" value="20" class="input numberOfSeats" id="numberOfSeats">
+      </div>
+      <div class="">
+        <label for="threshold">Electoral threshold:
+        <input type="number" name="threshold" value="0" class="input threshold" id="threshold"> %
+        </label>
+      </div>
+
+
+    </header>
+    <main>
+      <div class="partySelection">
+        <button type="button" name="addParty" class="btn addPartyBtn">Add a Party</button>
+      </div>
+      <div class="choiceSubmission">
+        <button type="button" name="Submit" class="btn submissionBtn">Submit</button>
+      </div>
+
+      <div class="results">
+        <table class="resultsTable">
+          <th>Party Name</th>
+          <th>Amount of Votes</th>
+          <th>% of Votes</th>
+          <th>Seats allocated</th>
+          <th>% of Seats</th>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+
+    <script src="assets/main.js">
+
+    </script>
+  </body>
+</html>
