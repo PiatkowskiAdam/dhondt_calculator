@@ -1,43 +1,49 @@
+<!-- https://css-tricks.com/float-labels-css/ -->
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="assets/main.css">
     <title>D'Hondt Calculator - Seats in Parliament</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
   </head>
   <body>
     <header>
       <h1>D'Hondt Calculator</h1>
       <h2>Seats in Parliament</h2>
       <h3>Calculate the amount of seats allocated to each party.</h3>
-      <div class="">
-        <label for="numberOfSeats">Number of Seats available: </label>
-        <input type="number" name="numberOfSeats" value="20" class="input numberOfSeats" id="numberOfSeats">
+      <div class="input-wrapper">
+        <label for="number-of-seats" class="label header-label">Number of seats: </label>
+        <input type="number" name="number-of-seats" value="20" class="input header-input" id="number-of-seats" autofocus>
       </div>
-      <div class="">
-        <label for="threshold">Electoral threshold:
-        <input type="number" name="threshold" value="0" class="input threshold" id="threshold"> %
-        </label>
+      <div class="input-wrapper">
+        <label for="threshold" class="label header-label">Electoral threshold:</label>
+        <span id="threshold-wrapper"><input type="number" name="threshold" value="0" class="input header-input" id="threshold"></span>
       </div>
 
 
     </header>
     <main>
-      <div class="partySelection">
-        <button type="button" name="addParty" class="btn addPartyBtn">Add a Party</button>
+      <div class="party-selection">
+        <button type="button" name="addParty" class="btn add-party-btn">Create New Party</button>
       </div>
-      <div class="choiceSubmission">
-        <button type="button" name="Submit" class="btn submissionBtn">Submit</button>
+      <div class="choice-submission">
+        <button type="button" name="Submit" class="btn submission-btn">Allocate Seats</button>
       </div>
 
       <div class="results">
-        <table class="resultsTable">
-          <th>Party Name</th>
-          <th>Amount of Votes</th>
-          <th>% of Votes</th>
-          <th>Seats allocated</th>
-          <th>% of Seats</th>
-          <tbody>
+        <table class="results-table">
+          <thead>
+            <th>Party Name</th>
+            <th>Amount of Votes</th>
+            <th>% of Votes</th>
+            <th>Seats allocated</th>
+            <th>% of Seats</th>
+          </thead>
+          <tbody class="table-body">
 
           </tbody>
         </table>

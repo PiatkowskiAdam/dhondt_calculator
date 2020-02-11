@@ -1,9 +1,9 @@
 
 //selecting buttons and inputs in the header
-const addPartyBtn = document.querySelector(".addPartyBtn");
-const submissionBtn = document.querySelector(".submissionBtn");
-const numberOfSeats = document.querySelector(".numberOfSeats");
-const thresholdInput = document.querySelector(".threshold")
+const addPartyBtn = document.querySelector(".add-party-btn");
+const submissionBtn = document.querySelector(".submission-btn");
+const numberOfSeats = document.querySelector("#number-of-seats");
+const thresholdInput = document.querySelector("#threshold")
 
 //adding eventListeners to buttons/inputs
 addPartyBtn.addEventListener("click", partyCreator);
@@ -12,7 +12,7 @@ numberOfSeats.addEventListener("change", numberOfSeatsChanger)
 thresholdInput.addEventListener("change", thresholdSetter)
 
 //selecting division where new parties are added
-const partySelection = document.querySelector(".partySelection")
+const partySelection = document.querySelector(".party-selection")
 
 //creating an array that will hold info of all of the parties
 let parties = [];
@@ -29,38 +29,42 @@ let seatsLeft = 20;
 let threshold = 0;
 
 // a table used for showing final results
-resultsTable = document.querySelector(".resultsTable");
+resultsTable = document.querySelector(".results-table");
 
 
 //creating a function that hadles party creation
 function partyCreator() {
   // creating a div holding all of a party's elements
   let newParty = document.createElement("div");
-  newParty.className = "singleParty";
+  newParty.className = "single-party";
   let partyID = idCounter;
   newParty.setAttribute("id", idCounter);
   partySelection.appendChild(newParty);
   idCounter++;
 
   // creating input elements to provide party's name
+
   let partyName = document.createElement("input");
-  partyName.className = "input partyName";
+  partyName.className = "input party-input";
+  partyName.setAttribute("id", "party-name")
   partyName.setAttribute("Placeholder", "Party Name");
-  partyName.addEventListener("change", nameChanger)
+  partyName.addEventListener("change", nameChanger);
   newParty.appendChild(partyName);
 
   // and its amount of votes
+
   let votesNumber = document.createElement("input");
-  votesNumber.className = "input votesNumber";
-  votesNumber.setAttribute("Placeholder", "Number of Votes");
+  votesNumber.className = "input party-input";
+  votesNumber.setAttribute("id", "votes-number")
+  votesNumber.setAttribute("Placeholder", "Votes");
   votesNumber.setAttribute("type", "number")
   votesNumber.addEventListener("change", voteChanger)
   newParty.appendChild(votesNumber);
 
   // creating a button that removes a party
   let removePartyBtn = document.createElement("button");
-  removePartyBtn.className = "btn removePartyBtn";
-  removePartyBtn.textContent = "Remove Party"
+  removePartyBtn.className = "btn remove-party-btn";
+  removePartyBtn.textContent = "x"
   newParty.appendChild(removePartyBtn);
   removePartyBtn.addEventListener("click", partyRemoval);
 }
@@ -110,31 +114,40 @@ function voteChanger(e) {
   }
 }
 
+// function that adjusts the number of seats after the value in the field has been changed
 function numberOfSeatsChanger(e) {
   mpsTotal = Number(e.target.value);
   seatsLeft = Number(e.target.value);
 }
 
+// function that creates that stores the electoral threshold after it's been set/changed
 function thresholdSetter(e) {
   threshold = Number(e.target.value)*0.01;
 }
 
 // function handling seats counting
 function initiateCalculation() {
+
   // if statement that checks if this is the first time the user clicks submit. If not, it cleans the data so that the calculation is repeated from scratch.
   if (resultsTable.rows.length > 1) {
     resetResults()
   }
 
-  // if statement that checks if there are any seats left to allocate. If so, it calls a function that allocates a seat and decrements the amount of seats available.
-  if (seatsLeft > 0) {
-    allocateSeat();
-    seatsLeft--;
-    initiateCalculation();
+  if (parties.length === 0) {
+    alert("You need to add parties to calculate results.")
   } else {
-    showResults();
+    // if statement that checks if there are any seats left to allocate. If so, it calls a function that allocates a seat and decrements the amount of seats available.
+    if (seatsLeft > 0) {
+      allocateSeat();
+      seatsLeft--;
+      initiateCalculation();
+    } else {
+      showResults();
+    }
   }
 }
+
+
 
 // this function finds the party that is next in line to receive a seat by sorting by votesCalculated. it grants them that seat and recalculates the votesCalculated variable.
 function allocateSeat() {
@@ -150,12 +163,14 @@ function allocateSeat() {
 
 
 function showResults() {
+  resultsTable.style.display = "table";
+  let tablesBody = document.querySelector(".table-body")
   let votesTotal = parties.reduce((total, party) => total + party.votes, 0);
-  parties = parties.sort((a, b) => b.mpsGranted - a.mpsGranted);
+  parties = parties.sort((a, b) => b.votes - a.votes);
 
   parties.forEach(party => {
     let newRow = document.createElement("tr");
-    resultsTable.appendChild(newRow);
+    tablesBody.appendChild(newRow);
 
     let nameCell = document.createElement("td");
     nameCell.textContent = party.name;

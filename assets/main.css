@@ -1,19 +1,184 @@
-body {
-  text-align: center;
+html {
+  font-size: 16px;
   line-height: 1.5;
+  letter-spacing: 0.5px;
 }
 
-table {
-  margin-top: 30px;
+body {
+  line-height: 1.5;
+  color: #000807;
+  font-family: 'Source Sans Pro', sans-serif;
   margin-left: auto;
   margin-right: auto;
 }
 
-button {
+
+h1, h2, h3 {
+  text-align: center;
+}
+
+.label {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+
+.input-wrapper {
+  margin: 30px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+
+.input {
+  position: relative;
+  width: 100px;
+  height: 2rem;
+  border-radius: 5px;
+  border: 1px solid #AEB2AA;
+  outline: none;
+  text-align: center;
+  background: #F0EEFF;
+
+  transition: background;
+  transition-duration: 0.75s;
+}
+
+.input:focus {
+  background: #fff;
+}
+
+#threshold-wrapper::after {
+  content: " %";
+  padding-left: 2px;
+}
+
+.party-input {
+  height: 2rem;
+  width: 95%;
+}
+
+
+.party-selection, .choice-submission {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.btn {
+  background-color: inherit;
+  border: 1px solid #1A535C;
+  color: #1A535C;
+  border-radius: 5px;
+  height: 3rem;
+  width: 150px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all;
+  transition-duration: 0.75s;
+}
+
+.btn:hover {
+  background-color: #1A535C;
+  color: #fff;
+}
+
+.remove-party-btn {
+  border: 1px solid #FF2C28;
+  color: #FF2C28;
+  height: 1.5rem;
+  width: 1.5rem;
   margin: 5px;
 }
 
-th {
-  border: 3px solid black;
-  padding: 15px;
+.remove-party-btn:hover {
+  background-color: #FF2C28;
+}
+
+
+.single-party {
+  display: grid;
+  grid-template-columns: 5fr 3fr 30px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.single-party:last-child {
+  margin-bottom: 30px;
+}
+
+.results-table {
+  display: none;
+  border-collapse: collapse;
+  border-radius: 5px;
+  width: 90vw;
+  min-width: 280px;
+  max-width: 700px;
+  margin: 25px auto 25px auto;
+}
+
+.results-table thead {
+  background-color: #1A535C;
+  color: #fff;
+  letter-spacing: 1.25px;
+}
+
+.results-table thead th, td {
+  padding: 12px 15px;
+  text-align: center;
+}
+
+.results-table td {
+  font-weight: 400;
+}
+
+.results-table tbody tr {
+  border-bottom: 1px solid #1A535C;
+}
+
+.results-table tbody tr:nth-of-type(even) {
+  background-color: #F0EEFF;
+}
+
+@media screen and (max-width: 768px) {
+  .results-table table, thead, tbody, th, tr, td {
+    display: block;
+    text-align: left;
+  }
+
+  .results-table th {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+  }
+
+  .results-table td {
+    position: relative;
+    padding-left: 50%;
+  }
+
+  .results-table td::before {
+    position: absolute;
+    top: 6px;
+    left: 0px;
+    padding: 5px;
+    white-space: nowrap;
+  }
+
+
+
+  .results-table td:nth-of-type(1)::before {content: "Party Name: "}
+  .results-table td:nth-of-type(2)::before {content: "Amount of Votes: "}
+  .results-table td:nth-of-type(3)::before {content: "% of Votes: "}
+  .results-table td:nth-of-type(4)::before {content: "Seats allocated: "}
+  .results-table td:nth-of-type(5)::before {content: "% of Seats: "}
+  }
 }
